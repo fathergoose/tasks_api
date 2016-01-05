@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
   
+  get 'tasks/index'
+
+  get 'tasks/show'
+
+  get 'tasks/new'
+
+  get 'tasks/create'
+
+  get 'tasks/edit'
+
+  get 'tasks/update'
+
+  get 'tasks/delete'
+
   namespace :api do
     namespace :v1 do
 

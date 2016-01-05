@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angluar
+//= require angular
 //= require app
 //= require_tree .
