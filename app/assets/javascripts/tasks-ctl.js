@@ -14,6 +14,20 @@
       })
       
     };
+
+    $scope.createNewTask = function(inputDescription) {
+      var task = {
+        description: inputDescription
+      };
+      $http.post('/api/v1/tasks.json', task).then(function(response) {
+        $scope.task = response.data;
+      });
+      $scope.tasks.push(task);
+      $scope.description = "";
+    };
+
+    //$scope.toggleComplete = function() {
+
     
   
   });

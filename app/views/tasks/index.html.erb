@@ -2,9 +2,12 @@
 <p>Find me in app/views/tasks/index.html.erb</p>
 <div ng-app="app"> <!-- the ng things are called directives can also do ng-click and ng-repeat-->
   <div ng-controller="tasksCtl" ng-init="setup()">
-    <div ng-repeat="task in tasks">
-      <p>{{ task.description }}</p>
-    </div>
+    <ul ng-repeat="task in tasks">
+      <li><input type="checkbox">{{ task.description }}</li>
+    </ul>
+    <input ng-model="description">
+    <input type="checkbox"  checked>
+    <button ng-click="createNewTask(description)">New task</button>
   </div>
 </div>
 
