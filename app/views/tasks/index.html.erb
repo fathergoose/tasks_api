@@ -1,9 +1,10 @@
 <h1>Tasks#index</h1>
 <p>Find me in app/views/tasks/index.html.erb</p>
 <div ng-app="app"> <!-- the ng things are called directives can also do ng-click and ng-repeat-->
-  <div ng-controller="tasksCtl">
-    {{ message }}<br>
-    <input ng-model="message">
+  <div ng-controller="tasksCtl" ng-init="setup()">
+    <div ng-repeat="task in tasks">
+      <p>{{ task.description }}</p>
+    </div>
   </div>
 </div>
 
