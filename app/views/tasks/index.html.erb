@@ -2,12 +2,21 @@
 <p>Find me in app/views/tasks/index.html.erb</p>
 <div ng-app="app"> <!-- the ng things are called directives can also do ng-click and ng-repeat-->
   <div ng-controller="tasksCtl" ng-init="setup()">
-    <ul ng-repeat="task in tasks">
-      <li><input type="checkbox">{{ task.description }}</li>
+    <ul>
+      <li ng-repeat="error in errors">{{error}}</li>
     </ul>
     <input ng-model="description">
-    <input type="checkbox"  checked>
+    <!--input type="checkbox"  checked-->
     <button ng-click="createNewTask(description)">New task</button>
+    <div>
+      <label>Name Filter:</label>
+      <input ng-model="descriptionFilter">
+    </div>
+    <button ng-click="sortBy('description')">Order by Description</button>
+    <button ng-click="sortBy('complete')">Sort by Status</button>
+    <ul ng-repeat="task in tasks | filter: {description: descriptionFilter} | orderBy: sortAttribute : sortDescending">
+      <li><input type="checkbox" ng-model="taskComplete" ng-checked="task.complete"  ng-click="toggleComplete(task, taskComplete)">{{ task.description }}</li>
+    </ul>
   </div>
 </div>
 

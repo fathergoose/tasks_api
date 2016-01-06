@@ -8,8 +8,11 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(description: params[:description])
-    render :show
+    @task = Task.new(description: params[:description])
+    if @task.save
+    else
+      render json: { errors: @task.errors.full_messages }, status: 422
+    end
   end
 
   def update
