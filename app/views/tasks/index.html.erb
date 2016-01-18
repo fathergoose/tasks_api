@@ -10,13 +10,34 @@
     <button ng-click="createNewTask(description)">New task</button>
     <div>
       <label>Name Filter:</label>
-      <input ng-model="descriptionFilter">
+      <input ng-model="descriptionFilter" list="data-list">
+      <datalist id="data-list">
+      <option ng-repeat="task in tasks">{{ task.description }}</option>
+      </datalist>
     </div>
-    <button ng-click="sortBy('description')">Order by Description</button>
-    <button ng-click="sortBy('complete')">Sort by Status</button>
-    <ul ng-repeat="task in tasks | filter: {description: descriptionFilter} | orderBy: sortAttribute : sortDescending">
-      <li><input type="checkbox" ng-model="taskComplete" ng-checked="task.complete"  ng-click="toggleComplete(task, taskComplete)">{{ task.description }}</li>
-    </ul>
+    <table border="dashed">
+      <thead>
+        <tr>
+          <th>
+            <button ng-click="sortBy('complete')">Status {{ getSortIcon('complete') }} </button>
+          </th>
+          <th>
+            <button ng-click="sortBy('description')">Description {{ getSortIcon('description') }}</button>
+          </th>
+          <th>
+            <button ng-click="sortBy('priority')">Priority {{ getSortIcon('priority') }}</button>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody ng-repeat="task in tasks | filter: {description: descriptionFilter} | orderBy: sortAttribute : sortDescending">
+        <tr>
+          <td><input type="checkbox" ng-model="taskComplete" ng-checked="task.complete"  ng-click="toggleComplete(task, taskComplete)"></td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.priority }} </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 

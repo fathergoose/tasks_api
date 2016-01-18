@@ -38,8 +38,8 @@
       console.log(checkbox);
       $http.patch('/api/v1/tasks/'+currentStatusOfTask.id, task).then(function(response) { //Add the id in your jbuilder files
         $scope.task = response.data;
-        $scope.tasks.push(task);
         console.log(task);
+        currentStatusOfTask.complete = task.complete;
         });
     }; 
 
@@ -47,6 +47,19 @@
       console.log(input);
       $scope.sortAttribute = input;
       $scope.sortDescending = !$scope.sortDescending;
+    };
+
+    $scope.getSortIcon = function(inputSortAttribute) {
+      console.log('hello');
+      if (inputSortAttribute === $scope.sortAttribute) {
+        if ($scope.sortDescending) {
+          return 'v';
+        } else {
+          return '^';
+        }
+      } else {
+        return " ";
+      }
     };
 
   });
